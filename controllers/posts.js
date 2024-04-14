@@ -131,7 +131,7 @@ exports.createPostDrive= async (req, res, next)=>{
 }
 
 exports.editPostWithDriveUpload = async (req, res, next)=>{
-    console.log("11111 from drive upload")
+    // console.log("11111 from drive upload")
 
     try {
         const folderId = await getOrCreateFolder(folderName);
@@ -285,7 +285,7 @@ exports.getAllPosts = (req, res, next) => {
         fetcheedPosts = documents;
         return Post.count();
         }).then(count =>{
-            console.log(count)
+            // console.log(count)
             res.status(200).json({
                 message: "Posts fetched Sucessfully!",
                 posts: fetcheedPosts,
