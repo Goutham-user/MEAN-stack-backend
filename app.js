@@ -6,13 +6,22 @@ const mongoose = require('mongoose');
 const postRoutes = require('./routes/post-routes');
 
 const userRoutes = require('./routes/user');
-
+const Post = require('./models/posts');
 const path = require('path');
-require('dotenv').config({path: path.resolve(__dirname+'/.env')});
+require('dotenv').config();
+const config = require('./config/config')
+// require('dotenv').config({path: path.resolve(__dirname+'/.env')});
+
+
+
+// const multer = require('multer');
+// const { google } = require('googleapis');
+// const fs = require('fs');
+// const checkAuth2 = require('./middlewares/check-auth')
 
 const app = express();
-const PORT = 3000;
-const MogodbConnectionString = `mongodb+srv://user1:GhBeqkOyelWQ6hbK@cluster0.kdjlb.mongodb.net/zomato_clone_DB?retryWrites=true&w=majority&appName=Cluster0`
+const PORT = config.environmentVariables.PORT;
+const MogodbConnectionString = config.environmentVariables.MogodbConnectionString;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -36,11 +45,3 @@ app.listen(PORT, (error) => {
     else
         console.log("Error occurred, server can't start", error);
 });
-
-
-// app.use((req, res, next)=>{
-//     res.setHeader("Acess-Control-Allow-Origin", "*");
-//     res.setHeader("Acess-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.setHeader("Acess-Control-Allow-Methods", " GET, POST, PATCH, DELETE, OPTIONS");
-//     next();
-// })
